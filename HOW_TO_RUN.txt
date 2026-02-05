@@ -1,0 +1,168 @@
+SUBDOMAIN FINDER - QUICK START GUIDE
+====================================
+
+🚀 HOW TO RUN THE PROGRAM
+
+STEP 1: Open PowerShell
+- Press Windows + R
+- Type: powershell
+- Press Enter
+
+STEP 2: Navigate to the project folder
+---
+cd "C:\Users\Akila Widuruwan\Desktop\bug sni finder"
+---
+
+STEP 3: Install dependencies (one-time only)
+---
+python -m pip install requests pytest
+---
+
+STEP 4: Run the scanner
+
+═══════════════════════════════════════════════════════════════
+
+EXAMPLE 1: FASTEST - DNS-only scan (no HTTP checks)
+---
+python subdomain_finder\src\subdomain_finder.py -t example.com -w subdomain_finder\wordlists\common.txt --no-http
+---
+✓ This is the fastest option
+✓ Only performs DNS lookups
+✓ Good for finding all subdomains quickly
+
+
+EXAMPLE 2: FULL SCAN - With HTTP status checks
+---
+python subdomain_finder\src\subdomain_finder.py -t example.com -w subdomain_finder\wordlists\common.txt -T 20
+---
+✓ Checks if subdomains are online with HTTP probes
+✓ Shows HTTP status codes (200, 404, 500, etc.)
+✓ Takes longer but gives more info
+
+
+EXAMPLE 3: SAVE RESULTS - Output to JSON file
+---
+python subdomain_finder\src\subdomain_finder.py -t example.com -w subdomain_finder\wordlists\common.txt -o results.jsonl --no-http
+---
+✓ Saves found subdomains to results.jsonl
+✓ Each line is a JSON object
+✓ Easy to parse with other tools
+
+
+EXAMPLE 4: FASTER SCANNING - More threads
+---
+python subdomain_finder\src\subdomain_finder.py -t example.com -w subdomain_finder\wordlists\common.txt -T 50 --no-http
+---
+✓ Uses 50 concurrent threads (default is 20)
+✓ Scans much faster
+✓ Can use up to 100+ threads
+
+
+EXAMPLE 5: REAL-WORLD - Google.com scan
+---
+python subdomain_finder\src\subdomain_finder.py -t google.com -w subdomain_finder\wordlists\common.txt -T 30 --no-http --timeout 2
+---
+✓ Scans google.com
+✓ 30 concurrent threads
+✓ 2-second timeout per request
+
+
+═══════════════════════════════════════════════════════════════
+
+COMMAND BREAKDOWN:
+
+python subdomain_finder\src\subdomain_finder.py   ← Run the script
+
+-t example.com                                     ← Target domain
+-w subdomain_finder\wordlists\common.txt          ← Wordlist file path
+-T 20                                              ← Number of threads (default 20)
+--timeout 5                                        ← Timeout per request in seconds (default 5)
+-o results.jsonl                                   ← Output file (optional)
+--no-http                                          ← Skip HTTP probes (DNS only, faster)
+
+
+═══════════════════════════════════════════════════════════════
+
+EXPECTED OUTPUT:
+
+FOUND: www.example.com -> 93.184.216.34 (http=None)
+FOUND: mail.example.com -> 93.184.216.35 (http=None)
+FOUND: api.example.com -> 93.184.216.36 (http=200)
+Done. 3 subdomains found in 4.23s
+
+Meaning:
+✓ www.example.com = Subdomain found with IP 93.184.216.34
+✓ http=None = No HTTP check performed (--no-http flag used)
+✓ http=200 = HTTP check succeeded, server responded with status 200
+✓ 4.23s = Total scan time
+
+
+═══════════════════════════════════════════════════════════════
+
+RUN TESTS (to verify everything works):
+
+---
+python -m pytest subdomain_finder -v
+---
+
+Expected output:
+test_load_wordlist PASSED
+test_resolve_host_success_and_failure PASSED
+test_find_subdomains_with_mocked_dns PASSED
+====== 3 passed ======
+
+
+═══════════════════════════════════════════════════════════════
+
+PERFORMANCE TIPS:
+
+1. Use --no-http for fastest scans (DNS only)
+2. Increase -T value (try 50, 100, or higher)
+3. Lower --timeout for faster failures (--timeout 2)
+4. Never scan domains you don't own without permission
+
+
+═══════════════════════════════════════════════════════════════
+
+WORDLIST INFO:
+
+The program comes with 1,889 subdomain labels including:
+✓ Web services (www, mail, api, admin, etc.)
+✓ Cloud platforms (AWS, Azure, GCP)
+✓ Databases (MySQL, Postgres, Redis)
+✓ Development (Git, Docker, Kubernetes)
+✓ AI/ML (OpenAI, TensorFlow, PyTorch)
+✓ Blockchain (Bitcoin, Ethereum)
+✓ Gaming (Steam, Epic, Roblox)
+✓ API endpoints and gateways
+✓ Authentication and OAuth services
+✓ Message brokers and queues (Kafka, RabbitMQ)
+✓ Logging and tracing services
+✓ CI/CD and deployment pipelines
+✓ Monitoring and observability tools
+✓ Security and compliance services
+✓ Business services (CRM, ERP, billing)
+✓ Communication services (email, SMS, notifications)
+✓ Search and discovery engines
+✓ Real-time processing services
+✓ File and object storage
+✓ Quality assurance and testing
+✓ Advanced networking services
+✓ Database replication and clustering
+✓ Business continuity services
+✓ Compliance and governance engines
+✓ And many more...
+
+Location: subdomain_finder\wordlists\common.txt
+
+
+═══════════════════════════════════════════════════════════════
+
+⚠️  LEGAL/ETHICAL NOTICE:
+
+Only scan domains you own or have explicit permission to test!
+Unauthorized scanning may be illegal and/or detected as a DoS attack.
+
+Use responsibly!
+
+═══════════════════════════════════════════════════════════════
