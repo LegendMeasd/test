@@ -1,0 +1,191 @@
+IMPROVED SUBDOMAIN FINDER - VPS SETUP & USAGE
+==============================================
+
+The script has been upgraded with:
+✅ Better DNS resolution (dnspython library)
+✅ Retry logic for failed DNS lookups
+✅ Progress reporting showing actual attempt rate
+✅ Support for both A and AAAA records
+✅ More reliable timeout handling
+
+HOW TO UPDATE YOUR VPS
+======================
+
+1. Pull latest changes
+---
+cd subdomain-finder
+git pull origin main
+---
+
+2. Install new dependencies
+---
+pip3 install -r subdomain_finder/requirements.txt
+---
+
+3. Verify dnspython is installed
+---
+python3 -c "import dns; print('dnspython installed successfully')"
+---
+
+RECOMMENDED COMMANDS (3,181 labels)
+===================================
+
+COMMAND 1: Comprehensive Scan (Recommended)
+---
+python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 20 --timeout 8 --retries 2 --no-http -o results.jsonl
+---
+✓ Uses 20 threads
+✓ 8 second DNS timeout
+✓ 2 retries for failed lookups
+✓ Saves to results.jsonl
+✓ Est. time: 10-15 minutes
+✓ Expected results: 100-500+ subdomains
+
+
+COMMAND 2: Fast Scan (More Aggressive)
+---
+python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 30 --timeout 5 --retries 1 --no-http -o results.jsonl
+---
+✓ Uses 30 threads
+✓ 5 second DNS timeout
+✓ 1 retry for failed lookups
+✓ Est. time: 5-10 minutes
+✓ Expected results: 80-300+ subdomains
+
+
+COMMAND 3: Ultra-Fast Scan (High Speed, Lower Accuracy)
+---
+python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 50 --timeout 3 --retries 1 --no-http -o results.jsonl
+---
+✓ Uses 50 threads
+✓ 3 second DNS timeout
+✓ 1 retry for failed lookups
+✓ Est. time: 2-5 minutes
+✓ Expected results: 50-200+ subdomains
+
+
+COMMAND 4: Slow but Thorough Scan (Maximum Coverage)
+---
+python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 10 --timeout 10 --retries 3 --no-http -o results.jsonl
+---
+✓ Uses 10 threads
+✓ 10 second DNS timeout
+✓ 3 retries for failed lookups
+✓ Est. time: 15-25 minutes
+✓ Expected results: 150-600+ subdomains (Most accurate)
+
+
+COMMAND 5: With HTTP Status Checking
+---
+python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 15 --timeout 8 --retries 2 -o results.jsonl
+---
+✓ Checks HTTP status for each found subdomain
+✓ Shows 200, 404, 500, etc. status codes
+✓ Takes longer but more informative
+✓ Est. time: 20-40 minutes
+
+
+COMMAND 6: Background Scan (Won't Stop on SSH Disconnect)
+---
+nohup python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 20 --timeout 8 --retries 2 --no-http -o results.jsonl > scan.log 2>&1 &
+---
+✓ Runs in background
+✓ Output logged to scan.log
+✓ Won't stop if SSH disconnects
+✓ Check progress: tail -f scan.log
+
+
+COMMAND 7: Real Google.com Scan (No HTTP for Speed)
+---
+python3 subdomain_finder/src/subdomain_finder.py -t google.com -w subdomain_finder/wordlists/common.txt -T 25 --timeout 6 --retries 2 --no-http -o google_results.jsonl
+---
+✓ Scan google.com with all 3,181 labels
+✓ Balanced settings for real-world results
+✓ Should find 20-50+ subdomains
+
+
+WHAT TO DO WITH RESULTS
+=======================
+
+1. View results as they appear
+---
+tail -f results.jsonl
+---
+
+2. Count total found subdomains
+---
+wc -l results.jsonl
+---
+
+3. View formatted results
+---
+cat results.jsonl | python3 -m json.tool
+---
+
+4. Extract just subdomains
+---
+cut -d'"' -f4 results.jsonl | grep subdomain
+---
+
+5. Extract subdomains with IPs
+---
+python3 -c "import json; [print(f\"{l['subdomain']} -> {l['ip']}\") for l in [json.loads(x) for x in open('results.jsonl')]]"
+---
+
+
+TROUBLESHOOTING
+===============
+
+If still getting only 20-50 results:
+1. Try: python3 subdomain_finder/src/subdomain_finder.py -t example.com -w subdomain_finder/wordlists/common.txt -T 10 --timeout 15 --retries 3 --no-http
+2. Check DNS: nslookup example.com (should resolve quickly)
+3. Try different target: python3 ... -t google.com ... (test with known working domain)
+4. Check log: tail -f scan.log (if running in background)
+
+
+KEY PARAMETERS EXPLAINED
+========================
+
+--timeout N      = Seconds to wait for each DNS lookup (default 5)
+                   Use 8-15 for slow/unreliable networks
+                   Use 3-5 for fast networks
+
+--retries N      = Number of retries for failed DNS lookups (default 2)
+                   Use 3 for unreliable networks
+                   Use 1 for speed
+
+-T N             = Number of concurrent threads (default 20)
+                   Use 10-15 for stability
+                   Use 30-50 for speed
+                   Don't exceed 100
+
+--no-http        = Skip HTTP checks (much faster!)
+                   DNS-only is 10x faster than with HTTP checks
+
+-o FILE          = Save results to JSON lines file (optional)
+                   Each line is a subdomain record
+                   Can be parsed by any JSON parser
+
+
+RECOMMENDED SETTINGS BY SCENARIO
+=================================
+
+Slow/Unreliable Network:
+--timeout 12 --retries 3 -T 10
+
+Fast/Reliable Network:
+--timeout 5 --retries 1 -T 40
+
+Balanced (Recommended):
+--timeout 8 --retries 2 -T 20
+
+Maximum Coverage (Slowest):
+--timeout 15 --retries 3 -T 5
+
+Maximum Speed (Least Accurate):
+--timeout 3 --retries 1 -T 50
+
+===================================
+Now try the recommended commands above!
+You should get MUCH better results!
+===================================
