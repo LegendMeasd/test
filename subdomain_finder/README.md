@@ -1,6 +1,6 @@
 # Subdomain Finder
 
-Comprehensive Python utility to enumerate possible subdomains for a target domain using DNS resolution. Features threaded scanning, optional HTTP probing, and massive 1400+ entry wordlist.
+Comprehensive Python utility to enumerate possible subdomains for a target domain using DNS resolution. Features threaded scanning, optional HTTP probing, and massive 5,000+ entry wordlist covering modern infrastructure and services.
 
 ## Quick Start
 
@@ -172,18 +172,31 @@ Done. 3 subdomains found in 5.23s
 
 ## Wordlist Information
 
-The tool comes with a comprehensive **1,400+ entry wordlist** covering:
+The tool comes with a comprehensive **5,000+ entry wordlist** covering:
 - Common web services (www, mail, api, admin, etc.)
-- Cloud platforms (AWS, Azure, GCP)
-- Development tools (Git, Jenkins, Docker, Kubernetes)
-- Databases (MySQL, Postgres, Redis, MongoDB)
-- Monitoring (Prometheus, Grafana, ELK)
-- AI/ML services (OpenAI, TensorFlow, PyTorch)
-- Blockchain (Bitcoin, Ethereum, DeFi)
-- Gaming platforms (Steam, Epic, Roblox)
+- Cloud platforms (AWS, Azure, GCP, Alibaba, Tencent, Oracle)
+- Databases (MySQL, Postgres, Redis, MongoDB, Cassandra, CockroachDB, TiDB, ScyllaDB, etc.)
+- Development tools (Git, Docker, Kubernetes, CI/CD pipelines)
+- Kubernetes ecosystem (controllers, operators, network policies, RBAC)
+- Service discovery (Consul, Nomad, Vault, Boundary, Teleport)
+- Advanced networking (BGP, OSPF, ISIS, DNS, VPN, proxy services)
+- Monitoring & observability (Prometheus, Grafana, ELK, Jaeger, Datadog, Splunk)
+- API Management (Apigee, Kong, Tyk, Gravitee)
+- Message brokers (Kafka, RabbitMQ, NATS, Pulsar)
+- Container registries (Docker Registry, Quay, Harbor, Nexus, Artifactory)
+- Backup & storage (Veeam, Commvault, Ceph, GlusterFS, NetApp)
+- Security services (Keycloak, Authentik, Vault, Teleport)
+- IoT & Edge Computing (MQTT, CoAP, LwM2M, 5G, MEC)
+- Robotics (ROS, Gazebo, drone controllers)
+- Streaming & media (OBS, RTMP, HLS, DASH, WebRTC)
+- Blockchain & Web3 (Ethereum, Solana, DeFi, NFT platforms)
+- Enterprise systems (SAP, Salesforce, Oracle, IBM)
+- Serverless & FaaS (AWS Lambda, Google Cloud Functions, Azure Functions)
+- Advanced CI/CD (Spinnaker, Concourse, BuildKite, Drone, ArgoCD, Flux)
+- Specialized services (audit, compliance, threat detection, machine learning)
 - And much more...
 
-Located at: `subdomain_finder\wordlists\common.txt`
+Located at: `subdomain_finder/wordlists/common.txt`
 
 ## Performance Tips
 

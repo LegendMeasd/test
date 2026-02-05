@@ -126,32 +126,37 @@ PERFORMANCE TIPS:
 
 WORDLIST INFO:
 
-The program comes with 1,889 subdomain labels including:
+The program comes with 5,000+ subdomain labels including:
 ✓ Web services (www, mail, api, admin, etc.)
-✓ Cloud platforms (AWS, Azure, GCP)
-✓ Databases (MySQL, Postgres, Redis)
-✓ Development (Git, Docker, Kubernetes)
-✓ AI/ML (OpenAI, TensorFlow, PyTorch)
-✓ Blockchain (Bitcoin, Ethereum)
-✓ Gaming (Steam, Epic, Roblox)
-✓ API endpoints and gateways
-✓ Authentication and OAuth services
-✓ Message brokers and queues (Kafka, RabbitMQ)
-✓ Logging and tracing services
-✓ CI/CD and deployment pipelines
-✓ Monitoring and observability tools
-✓ Security and compliance services
-✓ Business services (CRM, ERP, billing)
-✓ Communication services (email, SMS, notifications)
-✓ Search and discovery engines
-✓ Real-time processing services
-✓ File and object storage
-✓ Quality assurance and testing
-✓ Advanced networking services
-✓ Database replication and clustering
-✓ Business continuity services
-✓ Compliance and governance engines
-✓ And many more...
+✓ Cloud platforms (AWS, Azure, GCP, Alibaba, Tencent)
+✓ Databases (MySQL, Postgres, Redis, MongoDB, Cassandra, CockroachDB, TiDB, etc.)
+✓ Development (Git, Docker, Kubernetes, ArgoCD, Flux, etc.)
+✓ AI/ML (OpenAI, TensorFlow, PyTorch, MLflow, etc.)
+✓ Blockchain (Bitcoin, Ethereum, DeFi, Web3 protocols)
+✓ Gaming (Steam, Epic, Roblox, game engines)
+✓ IoT & Edge (MQTT, CoAP, LwM2M, 5G, MEC)
+✓ Robotics & Automation (ROS, Gazebo, drone controllers)
+✓ Advanced API Management (Apigee, Kong, Tyk, Gravitee)
+✓ Advanced Observability (Jaeger, Honeycomb, Dynatrace, New Relic)
+✓ Advanced Logging (Loki, ELK, Splunk, Datadog)
+✓ Advanced Security (Vault, Keycloak, Authentik, Teleport)
+✓ Message Brokers (Kafka, RabbitMQ, NATS, Pulsar, AWS SNS/SQS)
+✓ Container Registries (Docker Registry, Quay, Harbor, Nexus, Artifactory)
+✓ Advanced Kubernetes (controllers, operators, network policies, RBAC)
+✓ Service Discovery (Consul, Nomad, Vault, Boundary)
+✓ Advanced Networking (BGP, OSPF, ISIS, RIP, EIGRP, VPN, proxy services)
+✓ Advanced CI/CD (Spinnaker, Concourse, BuildKite, Drone)
+✓ Advanced Storage (Ceph, GlusterFS, ZFS, Lustre, NetApp)
+✓ Advanced Backup (Veeam, Commvault, Bacula, Restic, Borg)
+✓ Enterprise Systems (SAP, Salesforce, Oracle, IBM)
+✓ Streaming & Media (OBS, RTMP, HLS, DASH, WebRTC)
+✓ Distributed Ledger (Ethereum, Solana, layer2s, DeFi protocols)
+✓ Specialized Services (audit trails, compliance tools, monitoring)
+✓ IoT Gateway & Brokers
+✓ Machine Learning Platforms
+✓ Serverless & FaaS
+✓ Specialized Networking & DNS Services
+✓ And many more enterprise and modern infrastructure services...
 
 Location: subdomain_finder\wordlists\common.txt
 
